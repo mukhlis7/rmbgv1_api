@@ -27,6 +27,11 @@ def allowed_file(filename):
 def hello():
     return 'Hello, World!'
 
+@app.route('/isSerevrReady', methods=['POST','GET'])
+def isSerevrReady():
+    resp = jsonify({'message' : 'Bring It!'})
+    return resp
+
 
 @app.route('/upload_image2proc', methods=['POST'])
 def image2proc():
@@ -60,6 +65,7 @@ def image2proc():
         return "none executed!"
     return "method not allowed!"
     #return render_template('form.html')
+
 
 
 if __name__ == '__main__':
