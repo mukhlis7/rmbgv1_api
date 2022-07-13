@@ -18,7 +18,7 @@ app.config['SECRET_KEY'] = app_passwd
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
-ready = False
+ready = True
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -33,11 +33,11 @@ def hello():
 def image2proc():
 
     if request.method == 'POST':
-        ready = True
+        ready = False
         if 'file1' not in request.files:
             print("there is no file1 in request")
             resp = jsonify({'message' : 'there is no file1 in request'})
-            ready = False
+            ready = True
             return resp
 
 
@@ -50,7 +50,7 @@ def image2proc():
         if filename == '':
             print("filename empty")
             resp = jsonify({'message' : 'No selected file'})
-            ready = False
+            ready = True
             return resp
         if file and allowed_file(filename):
             print("ALLOWED_EXTENSIONS")
@@ -59,10 +59,10 @@ def image2proc():
             response = requests.put(img_url, data=output)
             up_file_link = response.content.decode("utf-8")
             resp = jsonify({'message' : 'Successfully Uploaded & Converted!', 'up_file_link' : up_file_link})
-            ready = False
+            ready = True
             return resp
 
-        ready = False
+        ready = True
         return "none executed!"
     return "method not allowed!"
     #return render_template('form.html')
@@ -77,6 +77,6 @@ def isSerevrReady():
         respNo = jsonify({'message' : 'Nope!'})
         return respNo
 
-        
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
