@@ -65,11 +65,7 @@ def image2proc():
 @app.route('/isSerevrReady', methods=['POST','GET'])
 def isSerevrReady():
     resp = jsonify({'message' : 'Bring It!'})
-    if ready:
-        return resp
-    else:
-        respNo = jsonify({'message' : 'Nope!'})
-        return respNo
+    return resp
 
 
 if __name__ == '__main__':
