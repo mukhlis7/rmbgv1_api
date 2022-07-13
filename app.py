@@ -31,8 +31,9 @@ def hello():
 
 @app.route('/upload_image2proc', methods=['POST'])
 def image2proc():
-    print(ready)
+    
     if request.method == 'POST':
+        print(ready)
         ready = False
         print(ready)
         if 'file1' not in request.files:
