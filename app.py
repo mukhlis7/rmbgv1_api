@@ -18,6 +18,8 @@ app.config['SECRET_KEY'] = app_passwd
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
+global ready
+
 ready = True
 
 def allowed_file(filename):
@@ -31,7 +33,7 @@ def hello():
 
 @app.route('/upload_image2proc', methods=['POST'])
 def image2proc():
-    
+    print(ready)
     if request.method == 'POST':
         print(ready)
         ready = False
