@@ -31,13 +31,15 @@ def hello():
 
 @app.route('/upload_image2proc', methods=['POST'])
 def image2proc():
-
+    print(ready)
     if request.method == 'POST':
         ready = False
+        print(ready)
         if 'file1' not in request.files:
             print("there is no file1 in request")
             resp = jsonify({'message' : 'there is no file1 in request'})
             ready = True
+            print(ready)
             return resp
 
 
@@ -51,6 +53,7 @@ def image2proc():
             print("filename empty")
             resp = jsonify({'message' : 'No selected file'})
             ready = True
+            print(ready)
             return resp
         if file and allowed_file(filename):
             print("ALLOWED_EXTENSIONS")
@@ -60,9 +63,11 @@ def image2proc():
             up_file_link = response.content.decode("utf-8")
             resp = jsonify({'message' : 'Successfully Uploaded & Converted!', 'up_file_link' : up_file_link})
             ready = True
+            print(ready)
             return resp
 
         ready = True
+        print(ready)
         return "none executed!"
     return "method not allowed!"
     #return render_template('form.html')
